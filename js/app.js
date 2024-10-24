@@ -21,14 +21,15 @@ const exchangeRates = {
     }
 };
 
-// Mostrar tasas de cambio en la pantalla
+// Función para mostrar las tasas de cambio en la lista de monedas
 function displayExchangeRates() {
-    const exchangeRatesList = document.getElementById('exchangeRates');
+    const currencyTable = document.getElementById('currencyTable');
+    currencyTable.innerHTML = ''; // Limpiar lista antes de renderizar
     for (const fromCurrency in exchangeRates) {
         for (const toCurrency in exchangeRates[fromCurrency]) {
             const listItem = document.createElement('li');
             listItem.textContent = `1 ${fromCurrency} = ${exchangeRates[fromCurrency][toCurrency]} ${toCurrency}`;
-            exchangeRatesList.appendChild(listItem);
+            currencyTable.appendChild(listItem);
         }
     }
 }
@@ -48,6 +49,57 @@ function convertCurrency() {
     const rate = exchangeRates[fromCurrency][toCurrency];
     const result = amount * rate;
     resultDiv.textContent = `${amount} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
+}
+
+// Agregar nueva moneda
+function addCurrency() {
+    const newCurrency = document.getElementById('newCurrency').value.toUpperCase();
+    const rateToUSD = parseFloat(document.getElementById('rateToUSD').value);
+    const rateToEUR = parseFloat(document.getElementById('rateToEUR').value);
+    const rateToGBP = parseFloat(document.getElementById('rateToGBP').value);
+
+    if (!newCurrency || isNaN(rateToUSD) || isNaN(rateToEUR) || isNaN(rateToGBP)) {
+        alert('Por favor, completa todos los campos correctamente.');
+        return;
+    }
+
+    // Agregar nueva moneda al objeto exchangeRates
+    exchangeRates[newCurrency] = {
+        "USD": rateToUSD,
+        "EUR": rateToEUR,
+        "GBP": rateToGBP
+    };
+
+    // Actualizar tasas inversas en otras monedas
+    exchangeRates["USD"][newCurrency] = 1 / rateToUSD;
+    exchangeRates["EUR"][newCurrency] = 1 / rateToEUR;
+    exchangeRates["GBP"][newCurrency] = 1 / rateToGBP;
+
+    displayExchangeRates(); // Refrescar la lista de monedas
+    alert(`Moneda ${newCurrency} agregada exitosamente.`);
+}
+
+// Eliminar moneda existente
+function deleteCurrency() {
+    const deleteCurrency = document.getElementById('deleteCurrency').value.toUpperCase();
+
+    if (!deleteCurrency || !(deleteCurrency in exchangeRates)) {
+        alert('Moneda no encontrada.');
+        return;
+    }
+
+    // Eliminar la moneda del objeto exchangeRates
+    delete exchangeRates[deleteCurrency];
+
+    // Eliminar las tasas inversas en las demás monedas
+    for (let currency in exchangeRates) {
+        if (exchangeRates[currency][deleteCurrency]) {
+            delete exchangeRates[currency][deleteCurrency];
+        }
+    }
+
+    displayExchangeRates(); // Refrescar la lista de monedas
+    alert(`Moneda ${deleteCurrency} eliminada exitosamente.`);
 }
 
 // Llamar a la función para mostrar las tasas de cambio al cargar la página
