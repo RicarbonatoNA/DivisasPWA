@@ -1,74 +1,117 @@
-body {
-    font-family: Arial, sans-serif;
+body, html {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0066CC 0%, #4A0066 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
+.container {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 20px;
+    width: 80%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.currency-converter {
+    display: flex;
+    width: 100%;
+}
+
+.converter-box, .currency-list {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    width: 48%;
+}
+
+.converter-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+p {
     text-align: center;
+    margin-bottom: 20px;
+    font-size: 1rem;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-h1 {
-    margin: 0;
-}
-
-.main {
-    padding: 2rem;
+input, select {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
     padding: 10px 20px;
+    background-color: #ffffff;
+    color: #4A0066;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #f0f0f0;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+#result {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #ffffff;
 }
 
-table, th, td {
-    border: 1px solid black;
+.currency-list ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 0.9rem;
 }
 
-th, td {
-    padding: 10px;
+.currency-list li {
+    background-color: rgba(255, 255, 255, 0.15);
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.currency-list h2 {
     text-align: center;
+    margin-bottom: 15px;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .converter-box, .currency-list {
+        width: 100%;
+        margin-bottom: 15px;
+    }
 }
