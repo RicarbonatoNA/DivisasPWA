@@ -19,21 +19,11 @@
                     </div>
                     <div class="input-group">
                         <label for="fromCurrency">De:</label>
-                        <select id="fromCurrency">
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="MXN">MXN</option>
-                        </select>
+                        <select id="fromCurrency"></select>
                     </div>
                     <div class="input-group">
                         <label for="toCurrency">A:</label>
-                        <select id="toCurrency">
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="MXN">MXN</option>
-                        </select>
+                        <select id="toCurrency"></select>
                     </div>
                     <button type="button" onclick="convertCurrency()">Convertir</button>
                     <div id="result"></div>
@@ -41,16 +31,12 @@
             </div>
             <div class="currency-list">
                 <h2>Divisas Disponibles</h2>
-                <ul>
-                    <li>IDR - Indonesian Rupiah</li>
-                    <li>USD - US Dollar</li>
-                    <li>SGD - Singapore Dollar</li>
-                    <li>JPY - Japan Yen</li>
-                    <li>THB - Thailand Baht</li>
-                    <li>AUD - Australian Dollar</li>
-                    <li>CAD - Canadian Dollar</li>
-                    <li>GBP - British Pound</li>
+                <ul id="currencyTable">
+                    <!-- Monedas mostradas aquí desde JS -->
                 </ul>
+                <div class="content-wrapper">
+                    <a href="crud.html" class="button">Agregar</a>
+                </div>
             </div>
         </section>
     </main>

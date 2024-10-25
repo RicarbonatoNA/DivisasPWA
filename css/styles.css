@@ -1,3 +1,21 @@
+
+button, .button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #4A0066;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    text-decoration: none; /* Para los enlaces */
+}
+
+button:hover, .button:hover {
+    background-color: #f0f0f0;
+}
 body, html {
     margin: 0;
     padding: 0;
@@ -7,21 +25,26 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     padding: 20px;
-    width: 80%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 1200px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .currency-converter {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
     width: 100%;
 }
 
@@ -29,14 +52,14 @@ body, html {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 20px;
-    width: 48%;
+    width: calc(50% - 20px);
+    box-sizing: border-box;
 }
 
 .converter-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 }
 
 h2 {
@@ -54,7 +77,8 @@ p {
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 input, select {
@@ -63,6 +87,7 @@ input, select {
     border: none;
     border-radius: 5px;
     margin-top: 5px;
+    width: 100%;
 }
 
 button {
@@ -74,6 +99,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-weight: bold;
+    width: 100%;
 }
 
 button:hover {
@@ -99,19 +125,47 @@ button:hover {
     border-radius: 5px;
 }
 
-.currency-list h2 {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* Responsive */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
         padding: 10px;
     }
+
     .converter-box, .currency-list {
         width: 100%;
         margin-bottom: 15px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    button, input, select {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    button, input, select {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    #result {
+        font-size: 1rem;
     }
 }

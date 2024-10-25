@@ -1,4 +1,4 @@
-const exchangeRates = {
+const exchangeRates = JSON.parse(localStorage.getItem('exchangeRates')) || {
     "USD": {
         "EUR": 0.85,
         "GBP": 0.75,
@@ -21,15 +21,40 @@ const exchangeRates = {
     }
 };
 
-// Mostrar tasas de cambio en la pantalla
+// Función para mostrar las tasas de cambio en la lista de monedas
 function displayExchangeRates() {
-    const exchangeRatesList = document.getElementById('exchangeRates');
+    const currencyTable = document.getElementById('currencyTable');
+    currencyTable.innerHTML = ''; // Limpiar lista antes de renderizar
     for (const fromCurrency in exchangeRates) {
         for (const toCurrency in exchangeRates[fromCurrency]) {
             const listItem = document.createElement('li');
             listItem.textContent = `1 ${fromCurrency} = ${exchangeRates[fromCurrency][toCurrency]} ${toCurrency}`;
-            exchangeRatesList.appendChild(listItem);
+            currencyTable.appendChild(listItem);
         }
+    }
+}
+
+// Actualizar selectores de monedas en convert.html
+function updateCurrencySelectors() {
+    const fromCurrencySelect = document.getElementById('fromCurrency');
+    const toCurrencySelect = document.getElementById('toCurrency');
+
+    // Limpiar los selectores antes de agregar opciones
+    fromCurrencySelect.innerHTML = '';
+    toCurrencySelect.innerHTML = '';
+
+    for (const currency in exchangeRates) {
+        const optionFrom = document.createElement('option');
+        const optionTo = document.createElement('option');
+
+        optionFrom.value = currency;
+        optionFrom.textContent = currency;
+
+        optionTo.value = currency;
+        optionTo.textContent = currency;
+
+        fromCurrencySelect.appendChild(optionFrom);
+        toCurrencySelect.appendChild(optionTo);
     }
 }
 
@@ -50,7 +75,68 @@ function convertCurrency() {
     resultDiv.textContent = `${amount} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
 }
 
+// Guardar tasas de cambio en localStorage
+function saveExchangeRates() {
+    localStorage.setItem('exchangeRates', JSON.stringify(exchangeRates));
+}
+
+// Agregar nueva moneda
+function addCurrency() {
+    const newCurrency = document.getElementById('newCurrency').value.toUpperCase();
+    const rateToUSD = parseFloat(document.getElementById('rateToUSD').value);
+    const rateToEUR = parseFloat(document.getElementById('rateToEUR').value);
+    const rateToGBP = parseFloat(document.getElementById('rateToGBP').value);
+
+    if (!newCurrency || isNaN(rateToUSD) || isNaN(rateToEUR) || isNaN(rateToGBP)) {
+        alert('Por favor, completa todos los campos correctamente.');
+        return;
+    }
+
+    // Agregar nueva moneda al objeto exchangeRates
+    exchangeRates[newCurrency] = {
+        "USD": rateToUSD,
+        "EUR": rateToEUR,
+        "GBP": rateToGBP
+    };
+
+    // Actualizar tasas inversas en otras monedas
+    exchangeRates["USD"][newCurrency] = 1 / rateToUSD;
+    exchangeRates["EUR"][newCurrency] = 1 / rateToEUR;
+    exchangeRates["GBP"][newCurrency] = 1 / rateToGBP;
+
+    saveExchangeRates(); // Guardar tasas en localStorage
+    displayExchangeRates(); // Refrescar la lista de monedas
+    updateCurrencySelectors(); // Refrescar los selectores en convert.html
+    alert(`Moneda ${newCurrency} agregada exitosamente.`);
+}
+
+// Eliminar moneda existente
+function deleteCurrency() {
+    const deleteCurrency = document.getElementById('deleteCurrency').value.toUpperCase();
+
+    if (!deleteCurrency || !(deleteCurrency in exchangeRates)) {
+        alert('Moneda no encontrada.');
+        return;
+    }
+
+    // Eliminar la moneda del objeto exchangeRates
+    delete exchangeRates[deleteCurrency];
+
+    // Eliminar las tasas inversas en las demás monedas
+    for (let currency in exchangeRates) {
+        if (exchangeRates[currency][deleteCurrency]) {
+            delete exchangeRates[currency][deleteCurrency];
+        }
+    }
+
+    saveExchangeRates(); // Guardar tasas en localStorage
+    displayExchangeRates(); // Refrescar la lista de monedas
+    updateCurrencySelectors(); // Refrescar los selectores en convert.html
+    alert(`Moneda ${deleteCurrency} eliminada exitosamente.`);
+}
+
 // Llamar a la función para mostrar las tasas de cambio al cargar la página
 window.onload = function () {
     displayExchangeRates();
+    updateCurrencySelectors(); // Cargar selectores al iniciar la página
 };

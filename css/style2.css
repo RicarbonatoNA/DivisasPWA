@@ -1,0 +1,200 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0066CC 0%, #4A0066 100%);
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.currency-management {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.currency-management h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    word-wrap: break-word;
+}
+
+.add-currency, .delete-currency {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.add-currency h2, .delete-currency h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #4A0066;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+.currency-list {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.currency-list h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+#currencyTable {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+#currencyTable li {
+    background-color: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    word-wrap: break-word;
+}
+
+.back-button {
+    display: block;
+    width: 200px;
+    max-width: 100%;
+    margin: 20px auto 0;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffffff;
+    color: #4A0066;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.back-button:hover {
+    background-color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .currency-management, .currency-list {
+        padding: 15px;
+    }
+
+    .currency-management h1 {
+        font-size: 1.5rem;
+    }
+
+    .add-currency h2, .delete-currency h2, .currency-list h2  {
+        font-size: 1.1rem;
+    }
+
+    .input-group input, button {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .currency-management, .currency-list {
+        padding: 10px;
+    }
+
+    .currency-management h1 {
+        font-size: 1.3rem;
+    }
+
+    .add-currency h2, .delete-currency h2, .currency-list h2 {
+        font-size: 1rem;
+    }
+
+    .input-group input, button {
+        font-size: 0.8rem;
+    }
+
+    .back-button {
+        width: 100%;
+    }
+}
