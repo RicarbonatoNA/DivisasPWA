@@ -1,3 +1,4 @@
+// Cargar tasas de cambio desde localStorage o establecer valores predeterminados
 const exchangeRates = JSON.parse(localStorage.getItem('exchangeRates')) || {
     "USD": {
         "EUR": 0.85,
@@ -92,6 +93,12 @@ function addCurrency() {
         return;
     }
 
+    // Verificar si la moneda ya existe
+    if (exchangeRates[newCurrency]) {
+        alert('La moneda ya existe. Por favor, elige otra.');
+        return;
+    }
+
     // Agregar nueva moneda al objeto exchangeRates
     exchangeRates[newCurrency] = {
         "USD": rateToUSD,
@@ -114,6 +121,7 @@ function addCurrency() {
 function deleteCurrency() {
     const deleteCurrency = document.getElementById('deleteCurrency').value.toUpperCase();
 
+    // Verificar que la moneda a eliminar exista
     if (!deleteCurrency || !(deleteCurrency in exchangeRates)) {
         alert('Moneda no encontrada.');
         return;
@@ -134,6 +142,9 @@ function deleteCurrency() {
     updateCurrencySelectors(); // Refrescar los selectores en convert.html
     alert(`Moneda ${deleteCurrency} eliminada exitosamente.`);
 }
+
+
+
 
 // Llamar a la función para mostrar las tasas de cambio al cargar la página
 window.onload = function () {

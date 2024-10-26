@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor de Divisas</title>
+    <link rel="stylesheet" href="css/styles3.css">
+</head>
+<body>
+    <main class="container">
+        <section class="currency-converter">
+            <div class="converter-box">
+                <h2>DATOS </h2>
+                <form id="currencyForm">
+                    <div class="input-group">
+                        <label for="newCurrency">Nombre:</label>
+                        <input type="text" id="newname" placeholder="Ej. Nombre">
+                    </div>
+                    <div class="input-group">
+                        <label for="rateToUSD">Dirección:</label>
+                        <input type="text" id="address" step="0.01" placeholder="Ej. Dirección">
+                    </div>
+                    <div class="input-group">
+                        <label for="rateToEUR">Localidad:</label>
+                        <input type="text" id="Location" step="0.01" placeholder="Ej. Localidad">
+                    </div>
+                    <div class="input-group">
+                        <label for="rateToGBP">Numero De Telefono:</label>
+                        <input type="text" id="Phonenumber" step="0.01" placeholder="Ej. Numero De Telefono">
+                    </div>
+                    <button type="button" onclick="addCurrency()">Actualizar Datos</button>
+                </form>
+
+                <a href="convert.html"  class="button back-button">Regresar a Conversión</a>
+                
+            </div> 
+        </section>
+    </main>
+    <script src="js/datos.js"></script>
+</body>
+</html>

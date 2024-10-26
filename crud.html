@@ -29,16 +29,16 @@
                         <input type="number" id="rateToGBP" step="0.01" placeholder="Ej. 0.03">
                     </div>
                     <button type="button" onclick="addCurrency()">Agregar Moneda</button>
+                </form>
 
-                    <h3>Eliminar Moneda</h3>
+                <h3>Eliminar Moneda</h3>
+                <div class="input-group">
                     <label for="deleteCurrency">Código de Moneda:</label>
                     <input type="text" id="deleteCurrency" placeholder="Ej. VES">
-                    <br>
-                    <br>
-                    <button type="button" onclick="deleteCurrency()">Eliminar Moneda</button>
-                </div> 
-                </form>
-            </div>
+                </div>
+                <button type="button" onclick="deleteCurrency()">Eliminar Moneda</button>
+            </div> 
+
             <div class="currency-list">
                 <h2>Divisas Disponibles</h2>
                 <ul id="currencyTable">
@@ -48,7 +48,6 @@
                     <a href="convert.html" class="button back-button">Regresar a Conversión</a>
                 </div>
             </div>
-            
         </section>
     </main>
     <script src="js/app.js"></script>
